@@ -22,12 +22,13 @@ data <- subset(data, subset=(Date >= "2007-02-01" & Date <= "2007-02-02"))
 datetime <- paste(as.Date(data$Date), data$Time)
 data$Datetime <- as.POSIXct(datetime)
 
-## Create Plot 1
+## Create Plot 1 and save to file
+png("plot1.png",
+    width = 480, height = 480)
+
 hist(data$Global_active_power, main="Global Active Power", 
      xlab="Global Active Power (kilowatts)", ylab="Frequency", col="Red")
 
-## Save Plot 1 to file
-dev.copy(png, file="plot1.png", height=480, width=480)
 dev.off()
 
 

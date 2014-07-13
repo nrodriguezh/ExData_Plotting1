@@ -19,11 +19,17 @@ data <- subset(data, subset=(Date >= "2007-02-01" & Date <= "2007-02-02"))
 
 
 ## Convert into dates
-datetime <- paste(as.Date(data$Date), data$Time)
+datetime <- paste(as.Date(data
+                          $Date), data$Time)
 data$Datetime <- as.POSIXct(datetime)
 
-## Create Plot 4
+## Create Plot 4 and save to file
+
+png("plot4.png",
+    width = 480, height = 480)
+
 par(mfrow=c(2,2), mar=c(4,4,2,1), oma=c(0,0,2,0))
+
 with(data, {
     plot(Global_active_power~Datetime, type="l", 
          ylab="Global Active Power", xlab="")
@@ -39,6 +45,4 @@ with(data, {
          ylab="Global_reactive_power",xlab="datetime")
 })
 
-## Save Plot 4 to file
-dev.copy(png, file="plot4.png", height=480, width=480)
 dev.off()
